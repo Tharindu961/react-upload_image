@@ -20,7 +20,20 @@ class ImageUpload extends Component {
         handleUpload = () => {
             const {image} = this.state;
             const uploadTask = storage.ref(`images/${image.name}`).put(image);
-            uploadTask.on('state_changed', progress, error, complete);
+            uploadTask.on('state_changed', 
+             (snapshot) => {
+                //progress function...
+             }, 
+             (error) => {
+                 //error function...
+                console.log(error);
+             }, 
+             () => {
+                 //complete funnction...
+                storage.ref('images').child(image.name).getDownloadURL().then(url => {
+                    console.log(url);
+                })
+             });
         }
 
         render() {

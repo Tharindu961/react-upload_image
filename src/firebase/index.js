@@ -2,7 +2,7 @@ import firebase from  'firebase/app';
 import 'firebase/storage';
 
  // Your web app's Firebase configuration
- var firebaseConfig = {
+ var config = {
     apiKey: "AIzaSyDFygPb72R8CAFAKhlXh6q7V-SHGcmdPU0",
     authDomain: "react-uploadimage.firebaseapp.com",
     databaseURL: "https://react-uploadimage.firebaseio.com",
