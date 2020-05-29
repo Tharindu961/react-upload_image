@@ -6,7 +6,8 @@ class ImageUpload extends Component {
         super(props) ;
             this.state = { 
                 image: null,
-                url: ''
+                url: '',
+                progress: 0
              }
             this.handleChange = this.handleChange.bind(this);
         }
@@ -32,6 +33,7 @@ class ImageUpload extends Component {
                  //complete funnction...
                 storage.ref('images').child(image.name).getDownloadURL().then(url => {
                     console.log(url);
+                    this.setState({url});
                 })
              });
         }
@@ -46,8 +48,12 @@ class ImageUpload extends Component {
             };
             return (
                 <div style={style}>
+                <progress value={this.state.progress} max="100"/>
+                <br />
                     <input type="file" onChange={this.handleChange}/>
                     <button onClick={this.handleUpload}>Upload</button>
+                    <br/>
+                    <img src={this.state.url || 'http://via.placeholder.com/400x300' } alt="Uploaded images" height="300" width="400"/>
                 </div>
             )
         }
